@@ -10,8 +10,12 @@ def entry_path() -> Path:
     return output_dir / "entry.txt"
 
 
+def write_entry(path: Path) -> None:
+    path.write_text(ENTRY, encoding="utf-8", newline="")
+
+
 def main() -> None:
-    entry_path().write_text(ENTRY, encoding="utf-8", newline="")
+    write_entry(entry_path())
 
 
 if __name__ == "__main__":
