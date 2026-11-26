@@ -1,12 +1,13 @@
 import os
 from pathlib import Path
 
-ENTRY = "One star: your oceans are undrinkable and your locals queue for bottled water, but the soup made my crew cancel the abduction."
+ENTRY = "One star: your inn has too many mirrors and the garlic bread is a war crime, but the blood-orange sorbet was to die for."
 
 
 def write_entry(output_dir: Path) -> None:
-    output_dir.mkdir(parents=True, exist_ok=True)
-    (output_dir / "entry.txt").write_text(ENTRY, encoding="utf-8")
+    target = output_dir / "entry.txt"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(ENTRY, encoding="utf-8")
 
 
 def main() -> None:
