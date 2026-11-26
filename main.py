@@ -1,17 +1,15 @@
 import os
+from pathlib import Path
 
-TEXT = "One star: your gravity makes my luggage kneel and your coins look like tiny edible discs, but the martabak manis made me leave my invasion map as a tip."
-
-
-def resolve_output_dir():
-    return os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
+TEXT_OPENING = "One star: your gravity makes my luggage kneel and your coins look like tiny edible discs, "
+TEXT_CLOSING = "but the martabak manis made me leave my invasion map as a tip."
+TEXT = TEXT_OPENING + TEXT_CLOSING
 
 
 def main():
-    out_dir = resolve_output_dir()
-    os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8", newline="") as f:
-        f.write(TEXT)
+    output_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / "entry.txt").write_text(TEXT, encoding="utf-8", newline="")
 
 
 if __name__ == "__main__":
