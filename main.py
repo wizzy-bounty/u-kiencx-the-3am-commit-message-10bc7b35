@@ -1,17 +1,17 @@
 import os
 
-ENTRY_TEXT = "One star: I'm the rat they keep failing to evict, and the risotto is why I signed a longer lease."
+TEXT = "One star: your gravity makes my luggage kneel and your coins look like tiny edible discs, but the martabak manis made me leave my invasion map as a tip."
 
 
-def write_entry(output_dir: str) -> None:
-    os.makedirs(output_dir, exist_ok=True)
-    target = os.path.join(output_dir, "entry.txt")
-    with open(target, "w", encoding="utf-8") as handle:
-        handle.write(ENTRY_TEXT)
+def resolve_output_dir():
+    return os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
 
 
-def main() -> None:
-    write_entry(os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output")
+def main():
+    out_dir = resolve_output_dir()
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8", newline="") as f:
+        f.write(TEXT)
 
 
 if __name__ == "__main__":
